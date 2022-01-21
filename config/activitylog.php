@@ -49,4 +49,9 @@ return [
      * Laravel's database.default will be used instead.
      */
     'database_connection' => env('ACTIVITY_LOGGER_DB_CONNECTION'),
+
+    /**
+     * This connection can be set in case AWS Aurora is being used.
+     */
+    'database_connection_reader_writer' => env('ACTIVITY_LOGGER_DB_CONNECTION_READER_WRITER', null),
 ];

@@ -254,6 +254,10 @@ trait LogsActivity
             return [];
         }
 
+        if(config('activitylog.database_connection_reader_writer')){
+            $default = $this->getConnectionName();
+            $this->setConnection(config('activitylog.database_connection_reader_writer'));
+        }
         $properties['attributes'] = static::logChanges(
 
             // if the current event is retrieved, get the model itself
@@ -267,6 +271,9 @@ trait LogsActivity
                         : $this
                 )
         );
+        if(config('activitylog.database_connection_reader_writer')){
+            $this->setConnection($default);
+        }
 
         if (static::eventsToBeRecorded()->contains('updated') && $processingEvent == 'updated') {
 
